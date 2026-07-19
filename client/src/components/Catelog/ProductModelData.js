@@ -18,42 +18,9 @@ Enhance connectivity, productivity, and collaboration across your organization.`
     partnersTitle: "Brands",
     brands: ["Matrix","Syntel","Panasonic","NEC","Crystal","Phono Max","CCL","Telesoft","Avaya","Siemens","many more.."]
   },
-  "cctv-cameras": {
-    title: "CCTV Cameras",
-    bannerImage: "/catelogPageImages/cctv-banner.png",
-    img: "/catelogPageImages/cctv-image.jpg",
-    description: "Professional CCTV surveillance solutions. Full sales, installation, maintenance, and support frameworks tailored for your premises.",
-    features: ["HD Recording", "Mobile Monitoring", "Night Vision", "Motion Detection"],
-    variantsTitle: "Types",
-    variants: [
-      "Analog Cameras",
-      "HD & IP Cameras",
-      "Dome & Bullet Cameras",
-      "Wi-Fi & PTZ Cameras",
-      "Solar & SIM-based ",
-      "Memory & Spy Cameras"
-    ],
-    partnersTitle: "Brands",
-    brands: ["Hikvision", "CP Plus", "Dahua","Honeywell","Sparsh","Secureeye","SecureUs","Hi-Focus","Prama","Samsung","Local Brands also"]
-  },
+ 
 
-  "phones": {
-    title: "Telecommunication Phones",
-    img: "/catelogPageImages/telephone-image.jpg",
-    bannerImage: "https://images.unsplash.com/photo-1543269865-cbf427effbad?w=1200",
-    description: "Reliable commercial telecom and office voice intercommunication hardware systems built for enterprise and hospitality use.",
-    features: ["Crystal Clear Audio", "Multi-Line Handling", "Speed Dial Options", "Intercom Extensions"],
-    variantsTitle: "Available Phone Categories",
-    variants: [
-      "Cordless Phones",
-      "Normal / CLI / Hotel Phones",
-      "GSM Phones",
-      "IP Phones",
-      "Digital Phones"
-    ],
-    partnersTitle: "Brands",
-    brands: ["Beetal","Panasonic", "Matrix", "NEC","BPL","Pramoda","Crystal","LexStar/Lextel","Avaya","Syntel","others also"]
-  },
+  
 
   "inverters": {
     title: "Power Inverters",
@@ -103,27 +70,60 @@ Enhance connectivity, productivity, and collaboration across your organization.`
       "Dual UPS Systems"
     ],
     partnersTitle: "Brands",
-    brands: ["APC", "Microtek", "Eaton","Numeric","Zebronics","Vertiv"]
+    brands: ["APC", "Microtek", "Eaton","Numeric","Zebronics","Emerson"]
   },
-
-  "fire-systems": {
-    title: "Fire & Safety Systems",
-    img: "/catelogPageImages/fire_system.png",
-    bannerImage: "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=1200",
-    description: `Advanced fire detection and protection solutions for homes, offices, and industries.
-Ensure safety with reliable alarms, monitoring systems, and emergency response capabilities.`,
-    features: ["Instant Siren Alarms", "Addressable Zones", "High Heat Resistance", "Backup Battery Operational"],
-    variantsTitle: "Safety Components Available",
+  "phones": {
+    title: "Telecommunication Phones",
+    img: "/catelogPageImages/telephone-image.jpg",
+    bannerImage: "https://images.unsplash.com/photo-1543269865-cbf427effbad?w=1200",
+    description: "Reliable commercial telecom and office voice intercommunication hardware systems built for enterprise and hospitality use.",
+    features: ["Crystal Clear Audio", "Multi-Line Handling", "Speed Dial Options", "Intercom Extensions"],
+    variantsTitle: "Available Phone Categories",
     variants: [
-      "Smoke Detectors",
-      "Heat Detectors",
-      "Sprinkler ",
-      "Fire Panels",
-      "Beam Detectors"
+      "Cordless Phones",
+      "Normal / CLI / Hotel Phones",
+      "GSM Phones",
+      "IP Phones",
+      "Digital Phones"
     ],
     partnersTitle: "Brands",
-    brands: ["Honeywell", "Apollo", "Ravel","Siemens","Johnson","Bosch"]
+    brands: ["Beetal","Panasonic", "Matrix", "NEC","BPL","Pramoda","Crystal","LexStar/Lextel","Avaya","Syntel","others also"]
   },
+   "cctv-cameras": {
+    title: "CCTV Cameras",
+    bannerImage: "/catelogPageImages/cctv-banner.png",
+    img: "/catelogPageImages/cctv-image.jpg",
+    description: "Professional CCTV surveillance solutions. Full sales, installation, maintenance, and support frameworks tailored for your premises.",
+    features: ["HD Recording", "Mobile Monitoring", "Night Vision", "Motion Detection"],
+    variantsTitle: "Types",
+    variants: [
+      "Analog Cameras",
+      "HD & IP Cameras",
+      "Dome & Bullet Cameras",
+      "Wi-Fi & PTZ Cameras",
+      "Solar & SIM-based ",
+      "Memory & Spy Cameras"
+    ],
+    partnersTitle: "Brands",
+    brands: ["Hikvision", "CP Plus", "Dahua","Honeywell","Sparsh","Secureeye","SecureUs","Hi-Focus","Prama","Samsung","Local Brands also"]
+  },
+  "gps-system": {
+    title: "GPS System",
+    img: "/catelogPageImages/gps.webp",
+    bannerImage: "",
+    description: `Monitor vehicle location, routes, and movement in real time.
+Improve fleet management, security, and operational efficiency.`,
+    features: [],
+    variantsTitle: "Types Available",
+    variants: [
+      "Navigation",
+      "Tracking"
+    ],
+    partnersTitle: "Brands",
+    brands: ["Balaji","Hawk","Maruti"]
+  },
+
+  
 
   "projectors": {
     title: "Projectors",
@@ -202,7 +202,7 @@ Enhance home and office security with real-time video communication.`,
       "Memory & Without memory"
     ],
     partnersTitle: "Brands",
-    brands: []
+    brands: ["Hikvision","Panasonic","Dahua","CP Plus","Alba","many more"]
   },
 
   "boom-barrier": {
@@ -219,7 +219,7 @@ Ideal for residential societies, offices, parking areas, and industrial premises
       "IP Based"
     ],
     partnersTitle: "Brands",
-    brands: []
+    brands: ["Realtime","Essl","Timewatch"]
   },
 
   "home-theatre": {
@@ -235,23 +235,27 @@ Enjoy immersive sound and stunning audio-visual performance at home.`,
       "And Customised"
     ],
     partnersTitle: "Brands",
-    brands: []
+    brands: ["JBL","Bosch"]
   },
 
-  "gps-system": {
-    title: "GPS System",
-    img: "/catelogPageImages/gps.webp",
-    bannerImage: "",
-    description: `Monitor vehicle location, routes, and movement in real time.
-Improve fleet management, security, and operational efficiency.`,
-    features: [],
-    variantsTitle: "Types Available",
+  
+  "fire-systems": {
+    title: "Fire & Safety Systems",
+    img: "/catelogPageImages/fire_system.png",
+    bannerImage: "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=1200",
+    description: `Advanced fire detection and protection solutions for homes, offices, and industries.
+Ensure safety with reliable alarms, monitoring systems, and emergency response capabilities.`,
+    features: ["Instant Siren Alarms", "Addressable Zones", "High Heat Resistance", "Backup Battery Operational"],
+    variantsTitle: "Safety Components Available",
     variants: [
-      "Navigation",
-      "Tracking"
+      "Smoke Detectors",
+      "Heat Detectors",
+      "Sprinkler ",
+      "Fire Panels",
+      "Beam Detectors"
     ],
     partnersTitle: "Brands",
-    brands: []
+    brands: ["Honeywell", "Agni", "Ravel","Siemens","Johnson","Bosch","Molex"]
   },
 
   "parking-management-system": {
@@ -266,7 +270,7 @@ Reduce congestion, improve security, and optimize parking space utilization.`,
       "All Types"
     ],
     partnersTitle: "Brands",
-    brands: []
+    brands: ["Realtime","Essl"]
   },
 
   "canteen-management-system": {
@@ -281,6 +285,6 @@ Improve efficiency, reduce manual work, and enhance customer service.`,
       "All types"
     ],
     partnersTitle: "Brands",
-    brands: []
+    brands: ["Realtime","Essl","Matrix"]
   }
 };
