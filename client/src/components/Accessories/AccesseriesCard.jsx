@@ -11,7 +11,7 @@ const AccesseriesCard = ({ img, title }) => {
     e.preventDefault();
 
     // 1. Get the raw number from your environment variables or fallback
-    let rawNumber = import.meta.env.W_N || "9414157713";
+    let rawNumber = import.meta.env.VITE_W_N 
 
     // 2. Strip out characters (+, -, spaces) to make it a clean number string
     const cleanNumber = String(rawNumber).replace(/[+\s-]/g, "");
