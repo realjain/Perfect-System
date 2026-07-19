@@ -19,7 +19,7 @@ const CategoryCard = ({ id, img, title, description, brands = [] }) => {
     }
 
     // 1. Get the raw number from your environment variables or fallback
-    let rawNumber = import.meta.env.W_N;
+    let rawNumber = import.meta.env.VITE_W_N;
 
     // 2. STAGE A CLEAN: Strip out characters (+, -, spaces) if they accidentally slipped into your .env file
     const cleanNumber = String(rawNumber).replace(/[+\s-]/g, "");
