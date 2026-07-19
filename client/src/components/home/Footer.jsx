@@ -8,7 +8,7 @@ const Footer = () => {
     "EPABX & Intercom Systems",
     "UPS, Inverters & Batteries",
     "CCTV & Security Systems",
-    "GPS Fleet Tracking",
+    "GPS Tracking",
     "Computers & IT Products",
     "Networking & Infrastructure",
     "Leased Line & Corporate Wi-Fi",
@@ -16,7 +16,8 @@ const Footer = () => {
     "Fire Alarm & Safety Systems",
     "Audio & PA Systems",
     "Projectors & Automation",
-    "Cyber Security Solutions"
+    "Cyber Security Solutions",
+    "Customised Solutions"
   ];
 
   const quickLinks = [
