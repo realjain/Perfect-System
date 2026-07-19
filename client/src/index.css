@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+@theme {
+  /* 1. Global System Font Configuration */
+  --font-sans: "Inter", sans-serif;
+  --font-display: "Poppins", sans-serif; /* Kept ready for headers */
+
+  /* 2. Existing Marquee Configurations */
+  --animate-marquee: marquee 40s linear infinite;
+
+  @keyframes marquee {
+    from { transform: translateX(0%); }
+    to { transform: translateX(-50%); }
+  }
+}
+
+/* 3. Forces the whole app to inherit Inter as the baseline */
+body {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
