@@ -39,7 +39,7 @@ const ProductModel = () => {
       return;
     }
 
-    let rawNumber = import.meta.env.W_N || "9414157713";
+    let rawNumber = import.meta.env.VITE_W_N ;
     const cleanNumber = String(rawNumber).replace(/[+\s-]/g, "");
 
     const message = `Hello, I would like to make an inquiry:\n\n` +
