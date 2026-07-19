@@ -19,8 +19,8 @@ const Home = () => {
   </Helmet>
         <Hero onGetQuoteClick={() => setIsQuoteOpen(true)} />
         <TrustedBy />
-        <AboutUs />
         <ServicesGrid isProductsPage={false} />
+        <AboutUs />
         <GetQuote isOpen={isQuoteOpen} onClose={() => setIsQuoteOpen(false)}/>
         
     </div>
