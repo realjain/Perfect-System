@@ -122,7 +122,7 @@ const Contact = () => {
                 </h2>
                 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <a href="tel:+919414165021" className="flex items-center gap-4 p-4 border border-slate-200/60 bg-slate-50/50 rounded-2xl group transition-all shadow-sm">
+                  <a href="tel:+919414157713" className="flex items-center gap-4 p-4 border border-slate-200/60 bg-slate-50/50 rounded-2xl group transition-all shadow-sm">
                     <div className="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center shrink-0 group-hover:bg-blue-600 group-hover:text-white transition-all">
                       <Phone size={18} />
                     </div>
