@@ -1,186 +1,228 @@
-import React, { useState } from "react";
-import { Phone, ArrowRight, Shield, Cpu, Sun, Radio, Wrench } from "lucide-react";
+import React, { useState, useEffect } from 'react';
+import { 
+  Phone, 
+  ArrowRight, 
+  Sparkles, 
+  CheckCircle2, 
+  ShieldCheck,
+  Award
+} from 'lucide-react';
 
 const Hero = ({ onGetQuoteClick }) => {
-  const [botTrap, setBotTrap] = useState("");
+  const [botTrap, setBotTrap] = useState('');
   const [isThrottled, setIsThrottled] = useState(false);
 
+  useEffect(() => {
+    let timer;
+    if (isThrottled) {
+      timer = setTimeout(() => {
+        setIsThrottled(false);
+      }, 3000);
+    }
+    return () => clearTimeout(timer);
+  }, [isThrottled]);
+
   const handleInquiryClick = (e) => {
-    // 1. Terminate execution if hidden honeypot field is modified by an automation bot script
-    if (botTrap.length > 0) {
-      console.warn("Automation trigger detected.");
+    if (botTrap) return;
+    if (isThrottled) {
+      e?.preventDefault?.();
       return;
     }
-
-    // 2. Prevent consecutive click abuse
-    if (isThrottled) return;
-
     setIsThrottled(true);
-    onGetQuoteClick(e);
-
-    // Release restriction layout after 3 seconds
-    setTimeout(() => {
-      setIsThrottled(false);
-    }, 3000);
+    if (typeof onGetQuoteClick === 'function') {
+      onGetQuoteClick(e);
+    }
   };
 
+  const servicePills = [
+    'Sales',
+    'Service',
+    'AMC',
+    'Repair',
+    'Rental',
+    'Consultancy'
+  ];
+
+  const metrics = [
+    { 
+      value: '30+', 
+      label: 'Years Experience', 
+      desc: 'Serving enterprises with trusted hardware since 1993.',
+      icon: Sparkles,
+      iconBg: 'bg-blue-50 text-blue-700'
+    },
+    { 
+      value: '500+', 
+      label: 'Projects Done', 
+      desc: 'Delivered mission-critical installations across domains.',
+      icon: Award,
+      iconBg: 'bg-amber-50 text-amber-700'
+    },
+    { 
+      value: '98%', 
+      label: 'Client Satisfaction', 
+      desc: 'Backed by quick-response AMC & maintenance support.',
+      icon: ShieldCheck,
+      iconBg: 'bg-emerald-50 text-emerald-700'
+    },
+  ];
+
   return (
-    <section className="min-h-screen bg-white text-slate-900 relative overflow-hidden flex items-center pt-24 md:pt-16">
-      
-      {/* BRANDING AMBIENT GLOWS */}
-      <div className="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-72 md:w-96 h-72 md:h-96 bg-amber-100/40 blur-[100px] md:blur-[120px] rounded-full pointer-events-none"></div>
-      <div className="absolute top-1/3 right-1/4 translate-x-1/4 w-80 md:w-[450px] h-80 md:h-[450px] bg-emerald-100/30 blur-[120px] md:blur-[150px] rounded-full pointer-events-none"></div>
+    <section className="relative w-full overflow-hidden bg-slate-50/70 pt-8 pb-12 sm:pt-12 sm:pb-16 lg:pt-16 lg:pb-20 select-none">
+      {/* Honeypot field for anti-bot protection */}
+      <input
+        type="text"
+        name="company_trap_id"
+        value={botTrap}
+        onChange={(e) => setBotTrap(e.target.value)}
+        tabIndex={-1}
+        aria-hidden="true"
+        className="hidden"
+      />
 
-      {/* INVISIBLE BOT TRAP LAYER */}
-      <div className="absolute opacity-0 -z-50 pointer-events-none w-0 h-0 overflow-hidden">
-        <input
-          type="text"
-          name="hero_bot_trap"
-          value={botTrap}
-          onChange={(e) => setBotTrap(e.target.value)}
-          tabIndex={-1}
-          autoComplete="off"
-        />
-      </div>
+      {/* Subtle Technical Grid Overlay */}
+      <div 
+        className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,#0f172a08_1px,transparent_1px),linear-gradient(to_bottom,#0f172a08_1px,transparent_1px)] bg-[size:36px_36px] [mask-image:radial-gradient(ellipse_70%_60%_at_50%_30%,#000_70%,transparent_100%)]" 
+        aria-hidden="true"
+      />
 
-      <div className="container mx-auto px-4 sm:px-6 lg:px-12 py-12 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      {/* Ultra-Soft Ambient Glows (Very Faint 4-5% Opacity) */}
+      <div 
+        className="pointer-events-none absolute -top-20 -left-20 h-96 w-96 rounded-full bg-blue-600/5 blur-3xl" 
+        aria-hidden="true"
+      />
+      <div 
+        className="pointer-events-none absolute top-1/4 right-0 h-96 w-96 rounded-full bg-emerald-600/5 blur-3xl" 
+        aria-hidden="true"
+      />
+
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-8 xl:gap-12">
           
-          {/* LEFT SIDE CONTENT */}
-          <div className="lg:col-span-6 flex flex-col justify-center text-left">
+          {/* ================= LEFT SIDE: CONTENT ================= */}
+          <div className="flex flex-col items-start lg:col-span-6">
             
-            {/* Tag Category Wrapper */}
-            <div className="flex flex-wrap gap-2 mb-6 max-w-full overflow-x-auto no-scrollbar">
-              {["Sales", "Service", "AMC", "Repairing","Rental", "Consultancy"].map((tag, idx) => (
-                <div key={idx} className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-emerald-500/10 bg-emerald-50/40 text-slate-700 text-[10px] md:text-xs font-bold uppercase tracking-wider shadow-sm shrink-0">
-                  <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse"></span>
-                  {tag}
-                </div>
-              ))}
-            </div>
+            {/* Eyebrow Badge */}
+            {/* <div className="inline-flex items-center gap-2 rounded-full border border-slate-200/90 bg-white/95 px-3.5 py-1.5 text-xs font-semibold tracking-wide text-slate-800 shadow-2xs backdrop-blur-md">
+              <span className="flex h-2 w-2 rounded-full bg-emerald-600 animate-pulse" />
+              <span className="uppercase text-[11px] font-bold tracking-wider text-slate-600">
+                Smart <span className="text-slate-300">•</span> Secure <span className="text-slate-300">•</span> Connected
+              </span>
+            </div> */}
 
-            {/* Headline */}
-            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-slate-950 leading-[1.2] lg:leading-[1.15]">
-              Building Secure &{" "}
-              <span className="bg-gradient-to-r from-amber-500 via-yellow-500 to-emerald-600 bg-clip-text text-transparent">
+            {/* Main Headline */}
+            <h1 className="mt-5 text-3xl font-extrabold tracking-tight text-slate-950 sm:text-4xl md:text-5xl lg:text-[3.25rem] lg:leading-[1.12]">
+              Building Secure &amp;{' '}
+              <span className="bg-gradient-to-r from-blue-700 to-teal-700 bg-clip-text text-transparent">
                 Connected Digital
-              </span>{" "}
+              </span>{' '}
               Infrastructure
             </h1>
 
-            {/* Description Text */}
-            <p className="mt-4 md:mt-6 text-slate-600 text-sm md:text-lg max-w-xl leading-relaxed font-normal">
-              EPABX, UPS & Inverter Batteries, Smart Surveillance, Networking, Solar, and IT Infrastructure Solutions for Homes, Offices, and Enterprises.
+            {/* Subtitle */}
+            <p className="mt-4 text-base font-normal leading-relaxed text-slate-600 sm:text-lg sm:leading-relaxed">
+              EPBAX, UPS &amp; Inverter Batteries, Smart Surveillance, Networking, Solar, and IT Infrastructure Solutions for Homes, Offices, and Enterprises.
             </p>
 
-            {/* Action Triggers */}
-            <div className="flex flex-col sm:flex-row gap-3 mt-8 md:mt-10">
-              <button 
+            {/* Service Pills */}
+            <div className="mt-5 flex flex-wrap items-center gap-2">
+              {servicePills.map((pill) => (
+                <span
+                  key={pill}
+                  className="rounded-lg border border-slate-200/90 bg-white px-3 py-1 text-xs font-semibold text-slate-700 shadow-2xs transition-colors hover:border-slate-300 hover:text-blue-700 hover:bg-slate-50/50"
+                >
+                  {pill}
+                </span>
+              ))}
+            </div>
+
+            {/* Call To Actions */}
+            <div className="mt-8 flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:items-center sm:gap-4">
+              {/* Primary Button */}
+              <button
+                type="button"
                 onClick={handleInquiryClick}
                 disabled={isThrottled}
-                className="group flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 disabled:bg-slate-400 disabled:cursor-not-allowed transition-all duration-300 px-8 py-4 rounded-xl font-bold text-white shadow-lg shadow-blue-600/10 active:scale-95 text-xs uppercase tracking-wider"
+                className="group inline-flex min-h-[46px] items-center justify-center gap-2 rounded-xl bg-blue-700 px-6 py-3 text-sm font-bold text-white shadow-md shadow-blue-700/20 hover:bg-blue-800 hover:shadow-lg hover:shadow-blue-800/25 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-70 transition-all cursor-pointer"
               >
-                {isThrottled ? "Processing..." : "Inquiry"}
-                <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                <span>{isThrottled ? 'Connecting...' : 'Inquire Now'}</span>
+                <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
               </button>
 
+              {/* Secondary Button */}
               <a
                 href="tel:+919414157713"
-                className="flex items-center justify-center gap-2 border border-slate-200 hover:border-emerald-500/40 hover:bg-emerald-50/30 transition-all duration-300 px-8 py-4 rounded-xl bg-white shadow-sm text-slate-700 font-semibold text-xs uppercase tracking-wider"
+                className="inline-flex min-h-[46px] items-center justify-center gap-2 rounded-xl border border-slate-200/90 bg-white px-6 py-3 text-sm font-semibold text-slate-800 shadow-2xs hover:border-slate-300 hover:bg-slate-50 transition-all active:scale-[0.98]"
               >
-                <Phone size={16} className="text-amber-500" />
-                Call Us
+                <Phone className="h-4 w-4 text-blue-700" />
+                <span>Call Us</span>
               </a>
             </div>
 
-            {/* Key Metrics Dashboard */}
-            <div className="grid grid-cols-3 gap-4 sm:gap-12 mt-12 md:mt-16 pt-8 border-t border-slate-100">
-              <div>
-                <h3 className="text-2xl sm:text-4xl font-black text-amber-600 tracking-tight">30+</h3>
-                <p className="text-slate-500 text-[9px] sm:text-xs mt-1 uppercase tracking-wider font-bold">Years Experience</p>
-              </div>
-              <div>
-                <h3 className="text-2xl sm:text-4xl font-black text-emerald-600 tracking-tight">500+</h3>
-                <p className="text-slate-500 text-[9px] sm:text-xs mt-1 uppercase tracking-wider font-bold">Projects Done</p>
-              </div>
-              <div>
-                <h3 className="text-2xl sm:text-4xl font-black text-blue-600 tracking-tight">90%</h3>
-                <p className="text-slate-500 text-[9px] sm:text-xs mt-1 uppercase tracking-wider font-bold">Client Satisfaction</p>
-              </div>
+            {/* Enterprise Assurance */}
+            <div className="mt-6 flex items-center gap-2 text-xs font-semibold text-slate-600">
+              <CheckCircle2 className="h-4 w-4 text-emerald-600 shrink-0" />
+              <span>Complete Solutions, Professional Service & AMC Support</span>
             </div>
 
           </div>
 
-          {/* RIGHT SIDE - CORE SERVICE VERTICALS CARDS GRID */}
-          <div className="lg:col-span-6 relative w-full min-h-fit lg:min-h-[480px] flex flex-col items-center justify-center mt-6 lg:mt-0">
+          {/* ================= RIGHT SIDE: 3D SCHEMATIC ================= */}
+          <div className="relative flex items-center justify-center lg:col-span-6">
             
-            <div className="absolute w-64 h-64 md:w-80 md:h-80 border border-slate-100 rounded-full pointer-events-none flex items-center justify-center hidden sm:flex">
-              <div className="w-48 h-48 md:w-56 md:h-56 border border-emerald-500/5 rounded-full animate-spin duration-[25s]"></div>
-            </div>
+            {/* Ground Plane Depth Shadow */}
+            <div 
+              className="pointer-events-none absolute bottom-4 h-24 w-4/5 rounded-[100%] bg-slate-900/10 blur-2xl"
+              aria-hidden="true"
+            />
 
-            {/* Service grid wrapper */}
-            <div className="relative w-full grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-md mx-auto z-10">
-              
-              {/* CARD 1 */}
-              <div className="group relative p-5 rounded-2xl bg-white border border-slate-100 hover:border-blue-500/30 shadow-[0_4px_25px_rgba(0,0,0,0.02)] transition-all hover:-translate-y-0.5">
-                <div className="w-9 h-9 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mb-3">
-                  <Shield size={18} />
-                </div>
-                <h4 className="text-blue-600 tracking-wider text-[9px] font-bold uppercase">01 / Telecom</h4>
-                <p className="text-sm font-black text-slate-900 mt-0.5">EPBAX, Phones & Intercom System</p>
-              </div>
-
-              {/* CARD 2 */}
-              <div className="group relative p-5 rounded-2xl bg-white border border-slate-100 hover:border-emerald-500/30 shadow-[0_4px_25px_rgba(0,0,0,0.02)] transition-all hover:-translate-y-0.5">
-                <div className="w-9 h-9 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center mb-3">
-                  <Cpu size={18} />
-                </div>
-                <h4 className="text-emerald-600 tracking-wider text-[9px] font-bold uppercase">02 / Energy</h4>
-                <p className="text-sm font-black text-slate-900 mt-0.5">UPS, Inverter & Batteries & Solar Panels</p>
-              </div>
-
-              {/* CARD 3 */}
-              <div className="group relative p-5 rounded-2xl bg-white border border-slate-100 hover:border-amber-500/30 shadow-[0_4px_25px_rgba(0,0,0,0.02)] transition-all hover:-translate-y-0.5">
-                <div className="w-9 h-9 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center mb-3">
-                  <Sun size={18} />
-                </div>
-                <h4 className="text-amber-600 tracking-wider text-[9px] font-bold uppercase">03 / Security & Safety</h4>
-                <p className="text-sm font-black text-slate-900 mt-0.5">CCTV Cameras & Fire Systems</p>
-              </div>
-
-              {/* CARD 4 */}
-              <div className="group relative p-5 rounded-2xl bg-white border border-slate-100 hover:border-slate-300 shadow-[0_4px_25px_rgba(0,0,0,0.02)] transition-all hover:-translate-y-0.5">
-                <div className="w-9 h-9 rounded-xl bg-slate-100 text-slate-600 flex items-center justify-center mb-3">
-                  <Radio size={18} />
-                </div>
-                <h4 className="text-slate-500 tracking-wider text-[9px] font-bold uppercase">04 / Network</h4>
-                <p className="text-sm font-black text-slate-900 mt-0.5">Servers & IT Infrastructure</p>
-              </div>
-
-              {/* NEW REPAIRING CARD */}
-              <div className="sm:col-span-2 group relative p-5 rounded-2xl bg-white border border-slate-100 hover:border-red-500/30 shadow-[0_4px_25px_rgba(0,0,0,0.02)] transition-all hover:-translate-y-0.5">
-                <div className="w-9 h-9 rounded-xl bg-red-50 text-red-600 flex items-center justify-center mb-3">
-                  <Wrench size={18} />
-                </div>
-                <h4 className="text-red-600 tracking-wider text-[9px] font-bold uppercase">05 / Support & Repair</h4>
-                <p className="text-sm font-black text-slate-900 mt-0.5">Expert Repairing for CCTV, EPABX, UPS & Inverters</p>
-              </div>
-
-              {/* Ecosystem Central Badge */}
-              <div className="sm:col-span-2 mt-2 flex justify-center w-full">
-                <div className="inline-flex items-center justify-center text-center gap-2 px-4 py-2 w-full sm:w-auto rounded-xl bg-white border border-emerald-500/20 text-emerald-700 text-[10px] font-bold tracking-wide uppercase shadow-sm">
-                  <span className="flex h-2 w-2 relative shrink-0">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-                  </span>
-                  Perfect System Ecosystem
-                </div>
-              </div>
-
+            {/* Canvas Area */}
+            <div 
+              className="relative w-full max-w-[560px] select-none"
+              onContextMenu={(e) => e.preventDefault()}
+            >
+              <img
+                src="https://res.cloudinary.com/ylikuxjy/image/upload/v1787929111/banner3.0-Photoroom.png"
+                alt="Perfect System Infrastructure: CCTV, EPABX, UPS, Batteries and Networking"
+                draggable="false"
+                className="relative z-10 h-auto w-full object-contain drop-shadow-[0_15px_30px_rgba(15,23,42,0.10)] pointer-events-none select-none"
+                loading="eager"
+              />
             </div>
           </div>
 
         </div>
+
+        {/* ================= BOTTOM METRICS BAR ================= */}
+        <div className="mt-12 border-t border-slate-200/80 pt-8 sm:mt-16 sm:pt-10">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-3 sm:gap-6">
+            {metrics.map((stat, idx) => {
+              const Icon = stat.icon;
+              return (
+                <div 
+                  key={idx} 
+                  className="flex items-start gap-4 rounded-2xl border border-slate-200/80 bg-white p-4.5 shadow-2xs transition-all hover:border-slate-300"
+                >
+                  <div className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl ${stat.iconBg}`}>
+                    <Icon className="h-5 w-5" />
+                  </div>
+                  <div>
+                    <div className="text-2xl font-black tracking-tight text-slate-950 lg:text-3xl">
+                      {stat.value}
+                    </div>
+                    <div className="text-xs font-bold uppercase tracking-wider text-slate-700 sm:text-sm">
+                      {stat.label}
+                    </div>
+                    <p className="mt-0.5 text-xs text-slate-500 leading-relaxed">
+                      {stat.desc}
+                    </p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
       </div>
     </section>
   );

@@ -1,5 +1,6 @@
 // import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { useEffect } from 'react';
 import Navbar from './components/layout/Navbar';
 // import Footer from '../../client/src/components/home/Footer'
 import Footer from './components/home/Footer';
@@ -12,8 +13,19 @@ import ProductCatelog from './pages/ProductCatelog';
 import ProductModel from './components/Catelog/ProductModel';
 import AccesseriesCard from './components/Accessories/AccesseriesCard';
 import AccessoriesPage from './pages/AccessoriesPage';
+import { getProducts } from './api/products';
 
 function App() {
+
+   useEffect(() => {
+    getProducts()
+      .then((data) => {
+        console.log("PRODUCT DATA FROM BACKEND:", data);
+      })
+      .catch((error) => {
+        console.error("API ERROR:", error);
+      });
+  }, []);
   return (
     
     
